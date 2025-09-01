@@ -8,7 +8,6 @@ namespace eng {
 	extern eng::window_t window;
 
 	void loop();
-
 	void start_loop(); 
 }
 

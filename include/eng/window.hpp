@@ -8,7 +8,6 @@ namespace eng {
 		sf::Vector2u resolution;
 		sf::RenderTexture texture;
 		sf::Sprite sprite;
-		sf::RectangleShape shape;
 
 		screen_t(unsigned int resolution, float aspect_ratio);
 	};

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-compile_src() {
+function compile_src() {
 	echo -e "\033[1;33mCompiling src..."
 
 	local files=$(ls ./src/*.cpp)
@@ -18,7 +18,7 @@ compile_src() {
         done
 }
 
-compile_libs() {
+function compile_libs() {
 	echo -e "\033[1;33mCompiling libs..."
 
 	local files=$(find ./src/eng/ -name "*.cpp")
@@ -36,7 +36,7 @@ compile_libs() {
         done
 }
 
-link() {
+function link() {
         echo -e "\033[1;33mLinking..."
 	
 	g++ ./objects/*.o -o ./raytracer \
@@ -44,20 +44,20 @@ link() {
 		-L./lib/ -lsfml-graphics -lsfml-window -lsfml-system
 }
 
-compile_shaders() {
+function compile_shaders() {
 	echo -e "\033[1;33mCompiling shaders..."
 	python3 ./scripts/make/compile_shaders.py
 }
 
-clean_objects() {
+function clean_objects() {
         rm -rf ./objects
 }
 
-clean() {
+function clean() {
 	rm ./raytracer
 }
 
-build() {
+function build() {
 	compile_src
 	compile_libs
 	compile_shaders
@@ -69,13 +69,20 @@ build() {
 	echo -e "\033[1;0m"
 }
 
-run() {
+function run() {
 	clear
 	./raytracer
 }
 
-main() {
-	for callback in "$@"; do $callback; done
+function main() {
+	local start_time=$(date +%s)
+
+	for callback in $@; do $callback; done
+
+	local end_time=$(date +%s)
+	local elapsed=$((end_time - start_time))
+
+	echo -e "Done in $elapsed seconds!\n"
 }
 
 main $@ 
