@@ -1,0 +1,41 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-I./include/",
+      "-o",
+      "./objects/main.o",
+      "./src/eng/main.cpp"
+    ],
+    "directory": "/root/coding_adventures/new_raytracer",
+    "file": "/root/coding_adventures/new_raytracer/src/eng/main.cpp",
+    "output": "/root/coding_adventures/new_raytracer/objects/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-I./include/",
+      "-o",
+      "./objects/main.o",
+      "./src/main.cpp"
+    ],
+    "directory": "/root/coding_adventures/new_raytracer",
+    "file": "/root/coding_adventures/new_raytracer/src/main.cpp",
+    "output": "/root/coding_adventures/new_raytracer/objects/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-Iinclude/",
+      "-o",
+      "./objects/eng_main.o",
+      "./src/eng/main.cpp"
+    ],
+    "directory": "/root/coding_adventures/new_raytracer",
+    "file": "/root/coding_adventures/new_raytracer/src/eng/main.cpp",
+    "output": "/root/coding_adventures/new_raytracer/objects/eng_main.o"
+  }
+]
