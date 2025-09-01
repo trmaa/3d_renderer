@@ -12,7 +12,7 @@ def preprocess_shader(input_file, output_file, include_path):
             if line.strip().startswith("#include"):
                 i += 1
                 include_file = line.strip().split('"')[1]
-                print(f"\033[1;0m * \033[1;31mCompiling: \033[1;0m{include_file}", end="")
+                print(f"\033[1;0m * \033[1;31mCompiling: \033[1;0m./shaders/{include_file}", end="")
                 print(f" \033[1;32m[{i}/{lines_count}]\033[0m")
                 include_full_path = os.path.join(include_path, include_file)
                 if os.path.exists(include_full_path):

@@ -40,6 +40,7 @@ function link() {
         echo -e "\033[1;33mLinking..."
 	
 	g++ ./objects/*.o -o ./raytracer \
+		-std=c++23 \
 		-Wl,-rpath=./lib \
 		-L./lib/ -lsfml-graphics -lsfml-window -lsfml-system
 }

@@ -7,6 +7,8 @@
 namespace eng {
 	extern eng::window_t window;
 
+	extern float delta_time;
+
 	void loop();
 	void start_loop(); 
 }

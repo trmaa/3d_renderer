@@ -23,18 +23,20 @@ eng::screen_t::screen_t(unsigned int resolution, float aspect_ratio) {
 
 eng::window_t::window_t(): 
 	m_screen(1280, 16.f/9.f) {
-	float aspect_ratio = this->m_screen.resolution.y / (float)this->m_screen.resolution.x;
-	unsigned int resolution = this->m_screen.resolution.x;
-
 	sf::VideoMode video_mode = sf::VideoMode::getDesktopMode();
 	this->create(video_mode, "Raytracer", sf::Style::Fullscreen);
+	this->setFramerateLimit(60);
 
 	this->m_raytracer.loadFromFile("./shaders/compiled_shader.glsl", sf::Shader::Fragment);
 
-	this->setFramerateLimit(60);
+	this->m_font.loadFromFile("./bin/fonts/clacon2.ttf");
+        this->m_fps.setFont(this->m_font);
+        this->m_fps.setCharacterSize(24);
+        this->m_fps.setFillColor(sf::Color(255, 0, 255));
+        this->m_fps.setPosition(10, 10);
 }
 
-void render_shader_to(sf::Shader& raytracer, eng::screen_t& screen) {
+void render_shader_to(const sf::Shader& raytracer, eng::screen_t& screen) {
 	screen.texture.clear(sf::Color(255, 0, 0));
         sf::RectangleShape buffer = sf::RectangleShape((sf::Vector2f)screen.resolution);
 	buffer.setPosition(0, 0);
@@ -51,9 +53,13 @@ void eng::window_t::render() {
 	this->clear(this->default_col());
 
 	this->m_raytracer.setUniform("resolution", (sf::Vector2f)this->m_screen.resolution);
+	this->m_raytracer.setUniform("delta_time", eng::delta_time);
 
 	render_shader_to(this->m_raytracer, this->m_screen);	
 	this->draw(this->m_screen.sprite);
+
+        this->m_fps.setString("fps: " + std::to_string(int(1/eng::delta_time)));
+        this->draw(this->m_fps);
 
 	this->display();
 }
