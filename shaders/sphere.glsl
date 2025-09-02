@@ -9,12 +9,12 @@ vec3 sphere_color_at(sampler2D textur, vec3 normal) {
 	return color.rgb;
 }
 
-float sphere_check_collision(vec3 ray_origin, vec3 ray_direction) {
+float sphere_check_collision(ray_t ray) {
 	float radius = 1;  
 
-	vec3 oc = ray_origin;
-	float a = dot(ray_direction, ray_direction);
-	float b = 2.0 * dot(oc, ray_direction);
+	vec3 oc = ray.origin;
+	float a = dot(ray.direction, ray.direction);
+	float b = 2.0 * dot(oc, ray.direction);
 	float c = dot(oc, oc) - radius * radius;
 	float discriminant = b * b - 4.0 * a * c;
 
