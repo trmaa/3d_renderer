@@ -2,7 +2,7 @@
 
 //engin
 uniform vec2 resolution;
-uniform sampler2D sky_texture;
+uniform sampler2D sky_texture; //texture names are the ones at bin/texutres
 
 mat3 angle2_to_vector3_matrix(vec2 angle) {
     float pitch = angle.x;
@@ -21,14 +21,32 @@ mat3 angle2_to_vector3_matrix(vec2 angle) {
 }
 
 vec3 sphere_color_at(vec3 normal) {
-    float theta = acos(normal.y);
-    float phi = atan(normal.z, normal.x);
+	float theta = acos(normal.y);
+	float phi = atan(normal.z, normal.x);
 
-    float u = (phi + 3.14159) / (2.0 * 3.14159);
-    float v = theta / 3.14159;
+	float u = (phi + 3.14159) / (2.0 * 3.14159);
+	float v = theta / 3.14159;
 
-    vec3 color = texture(sky_texture, vec2(u, v)).rgb;
-    return color;
+	vec3 color = texture(sky_texture, vec2(u, v)).rgb;
+	return color;
+}
+
+float sphere_check_collision(vec3 ray_origin, vec3 ray_direction) {
+	float radius = 1;  
+
+	vec3 oc = ray_origin;
+	float a = dot(ray_direction, ray_direction);
+	float b = 2.0 * dot(oc, ray_direction);
+	float c = dot(oc, oc) - radius * radius;
+	float discriminant = b * b - 4.0 * a * c;
+
+	if (discriminant < 0.0) {
+		return -1.0;  
+	} else {
+		float t1 = (-b - sqrt(discriminant)) / (2.0 * a);
+		float t2 = (-b + sqrt(discriminant)) / (2.0 * a);
+		return (t1 > 0.0) ? t1 : t2;
+	}
 }
 
 
@@ -42,14 +60,22 @@ void main() {
 	vec2 uv = gl_FragCoord.xy / resolution;
 	uv = uv * 2.0 - 1.0;
 
-	vec3 idle_ray_direction = normalize(vec3(uv.x, uv.y, -1.0)); //righthanded
+	vec3 idle_ray_direction = normalize(vec3(uv.x*16, uv.y*9, -10.0)); //righthanded 0 pitch 0 yaw means 0 0 -1
         vec3 ray_direction = angle2_to_vector3_matrix(camera_angle) * idle_ray_direction;
+	ray_direction = normalize(ray_direction);
 
 	vec3 color = ray_direction;
 
 	//ray tracing
 
 	color = sphere_color_at(ray_direction);
+
+	float colided = sphere_check_collision(camera_position, ray_direction);
+        if (colided > 0) {
+		vec3 normal = ray_direction * colided + camera_position; 
+		float brightness = dot(normal, vec3(1,1,0));
+		color = vec3(brightness);
+        }
 
 	//end ray tracing
 

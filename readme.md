@@ -12,7 +12,7 @@ but i want it modular and super simple.
 
 `./make run`
 
-![ss](./bin/screenshots/9.png)
+![ss](./bin/screenshots/10.png)
 
 ## freatures
 
