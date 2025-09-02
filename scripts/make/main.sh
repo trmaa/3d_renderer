@@ -55,6 +55,7 @@ function clean_objects() {
 }
 
 function clean() {
+	clean_objects
 	rm ./raytracer
 }
 
@@ -64,8 +65,6 @@ function build() {
 	compile_shaders
 
 	link
-
-	clean_objects
 	
 	echo -e "\033[1;0m"
 }
