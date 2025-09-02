@@ -4,3 +4,4 @@ include/glm/
 lib/
 .compile_commands.json
 DEPENDENCIES/
+DEPENDENCIES.tar.gz
