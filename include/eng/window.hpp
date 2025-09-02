@@ -2,8 +2,8 @@
 #define ENG_WINDOW_HPP
 
 #include <SFML/Graphics.hpp>
-#include <cstdio>
 #include <string>
+#include <map>
 
 namespace eng {
 	struct screen_t {
@@ -21,11 +21,16 @@ namespace eng {
 
 		sf::Font m_font;
 		sf::Text m_fps;
+
+		std::map<std::string, sf::Texture> m_textures;
 	public:
 		sf::Vector2u resolution() { return this->m_screen.resolution; }
                 sf::Color default_col() { return sf::Color(255, 255, 255); }
 
 	private:
+		void m_load_fonts();
+		void m_add_texture(std::string name);
+		void m_load_shader();
 	public:
 		template <typename any_t>
 		void set_uniform(const std::string& name, const any_t& value) {
