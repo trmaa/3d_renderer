@@ -64,9 +64,7 @@ function build() {
 	compile_libs
 	compile_shaders
 
-	link
-	
-	echo -e "\033[1;0m"
+	link	
 }
 
 function run() {
@@ -78,6 +76,7 @@ function main() {
 	local start_time=$(date +%s)
 
 	for callback in $@; do $callback; done
+	echo -e "\033[1;0m"
 
 	local end_time=$(date +%s)
 	local elapsed=$((end_time - start_time))

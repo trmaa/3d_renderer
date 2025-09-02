@@ -1,0 +1,4 @@
+.cache/
+include/SFML/
+include/glm/
+.compile_commands.json

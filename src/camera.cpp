@@ -40,36 +40,36 @@ void camera_t::m_handle_mouse_movement() {
 void camera_t::move() {
 	this->m_handle_mouse_movement();
 
-	float fixed_speed = 0.1f * eng::delta_time;
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-            fixed_speed *= 10;
-        }
+	float fixed_speed = 1.0f * eng::delta_time;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) {
+		fixed_speed *= 10;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-            this->m_position.x += std::cos(this->m_angle.y) * fixed_speed;
-            this->m_position.z -= std::sin(this->m_angle.y) * fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		this->m_position.x -= std::sin(this->m_angle.y) * fixed_speed;
+		this->m_position.z -= std::cos(this->m_angle.y) * fixed_speed;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-            this->m_position.x -= std::cos(this->m_angle.y) * fixed_speed;
-            this->m_position.z += std::sin(this->m_angle.y) * fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		this->m_position.x += std::sin(this->m_angle.y) * fixed_speed;
+		this->m_position.z += std::cos(this->m_angle.y) * fixed_speed;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-            this->m_position.x += std::cos(this->m_angle.y + 3.14159f) * fixed_speed;
-            this->m_position.z -= std::sin(this->m_angle.y + 3.14159f) * fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		this->m_position.x += std::sin(this->m_angle.y - 3.14159f/2.f) * fixed_speed;
+		this->m_position.z += std::cos(this->m_angle.y - 3.14159f/2.f) * fixed_speed;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-            this->m_position.x -= std::cos(this->m_angle.y - 3.14159f) * fixed_speed;
-            this->m_position.z += std::sin(this->m_angle.y - 3.14159f) * fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		this->m_position.x -= std::sin(this->m_angle.y - 3.14159f/2.f) * fixed_speed;
+		this->m_position.z -= std::cos(this->m_angle.y - 3.14159f/2.f) * fixed_speed;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-            this->m_position.y += fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		this->m_position.y += fixed_speed;
+	}
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-            this->m_position.y -= fixed_speed;
-        }
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+		this->m_position.y -= fixed_speed;
+	}
 }
