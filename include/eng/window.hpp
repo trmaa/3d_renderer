@@ -2,6 +2,7 @@
 #define ENG_WINDOW_HPP
 
 #include <SFML/Graphics.hpp>
+#include <cstdio>
 #include <string>
 
 namespace eng {
@@ -30,6 +31,8 @@ namespace eng {
 		void set_uniform(const std::string& name, const any_t& value) {
 			this->m_raytracer.setUniform(name, value);
 		}
+
+		void screenshot();	
 
 		void render();
 

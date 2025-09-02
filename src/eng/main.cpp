@@ -12,6 +12,14 @@ void eng::start_loop() {
 			if (event.type == sf::Event::Closed)
 				eng::window.close();
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			eng::window.close();
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2)) {
+			eng::window.screenshot();
+		}
+
 		eng::delta_time = clock.getElapsedTime().asSeconds();
                 clock.restart();
 

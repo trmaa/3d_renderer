@@ -3,6 +3,7 @@
 #include <eng/main.hpp>
 #include <eng/window.hpp>
 #include <eng/vectors.hpp>
+#include <filesystem>
 
 eng::screen_t::screen_t(unsigned int resolution, float aspect_ratio) {
 	this->resolution = sf::Vector2u(resolution, resolution / aspect_ratio);
@@ -62,4 +63,16 @@ void eng::window_t::render() {
         this->draw(this->m_fps);
 
 	this->display();
+}
+
+void eng::window_t::screenshot() {
+	namespace fs = std::filesystem;
+
+	unsigned int screenshot_id = 0; 
+	for (auto file: fs::directory_iterator("./bin/screenshots/")) {
+		screenshot_id++;
+	}
+
+        sf::Image image = this->m_screen.texture.getTexture().copyToImage();
+        image.saveToFile("./bin/screenshots/" + std::to_string(screenshot_id) + ".png");
 }
