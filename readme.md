@@ -11,3 +11,5 @@ but i want it modular and super simple.
 ## running 
 
 `./make run`
+
+![ss](./bin/screenshots/4.png)
