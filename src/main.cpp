@@ -6,8 +6,6 @@ camera_t camera;
 
 void eng::loop() {
         camera.move();
-	eng::window.set_uniform("camera_position", camera.get_position());
-	eng::window.set_uniform("camera_angle", camera.get_angle());
 
         eng::window.render();	
 }

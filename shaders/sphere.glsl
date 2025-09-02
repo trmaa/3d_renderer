@@ -1,12 +1,12 @@
-vec3 sphere_color_at(vec3 normal) {
+vec3 sphere_color_at(sampler2D textur, vec3 normal) {
 	float theta = acos(normal.y);
-	float phi = atan(normal.z, normal.x);
+	float phi = atan(-normal.z, normal.x);
 
 	float u = (phi + 3.14159) / (2.0 * 3.14159);
 	float v = theta / 3.14159;
 
-	vec3 color = texture(sky_texture, vec2(u, v)).rgb;
-	return color;
+	vec4 color = texture(textur, vec2(u, v));
+	return color.rgb;
 }
 
 float sphere_check_collision(vec3 ray_origin, vec3 ray_direction) {

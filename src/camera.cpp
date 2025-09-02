@@ -72,4 +72,15 @@ void camera_t::move() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
 		this->m_position.y -= fixed_speed;
 	}
+	
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) {
+		eng::window.set_uniform("FAR", -100.f);
+		this->m_mouse_sensitivity = 0.02f;
+        } else {
+		eng::window.set_uniform("FAR", -10.f);
+		this->m_mouse_sensitivity = 0.2f;
+	}
+
+	eng::window.set_uniform("camera_position", this->get_position());
+	eng::window.set_uniform("camera_angle", this->get_angle());
 }
