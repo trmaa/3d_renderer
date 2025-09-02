@@ -6,7 +6,7 @@
 #include <filesystem>
 
 eng::window_t::window_t(): 
-	m_screen(1280, 16.f/9.f) {
+	m_screen(1920, 16.f/9.f) {
 	sf::VideoMode video_mode = sf::VideoMode::getDesktopMode();
 	this->create(video_mode, "Raytracer", sf::Style::Fullscreen);
 	this->setFramerateLimit(60);
