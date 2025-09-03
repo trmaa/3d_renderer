@@ -33,27 +33,10 @@ eng::screen_t::screen_t(unsigned int resolution, float aspect_ratio) {
 	this->sprite.setPosition(0, 0);
 }
 
-void eng::window_t::m_add_texture(std::string name) {
-	sf::Texture texture;
-	texture.loadFromFile("./bin/textures/" + name + ".jpg");
-	std::pair<std::string, sf::Texture> pair(name + "_texture", texture);	
-	this->m_textures.insert(pair);
-}
-
 void eng::window_t::m_load_shader() {
         this->m_raytracer.loadFromFile("./shaders/compiled_shader.glsl", sf::Shader::Fragment);
 
 	this->m_raytracer.setUniform("resolution", (sf::Vector2f)this->m_screen.resolution);
-
-	namespace fs = std::filesystem;
-	for (auto file: fs::directory_iterator("./bin/textures/")) {
-		std::string filename = file.path().filename().string();
-		std::string name = filename.substr(0, filename.find_last_of('.'));
-		this->m_add_texture(name);
-	}
-	for (const auto& texture: this->m_textures) {
-		this->m_raytracer.setUniform(texture.first, texture.second);
-	}
 }
 
 void eng::window_t::m_load_fonts() {

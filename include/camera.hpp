@@ -21,6 +21,7 @@ private:
         void m_lock_mouse();
 	void m_handle_mouse_movement();
 public:
+	void pass_data_to_shader();
 	void move();
 
 public:

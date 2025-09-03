@@ -37,6 +37,11 @@ void camera_t::m_handle_mouse_movement() {
 		eng::window);
 }
 
+void camera_t::pass_data_to_shader() {
+	eng::window.set_uniform("camera_position", this->get_position());
+	eng::window.set_uniform("camera_angle", this->get_angle());
+}
+
 void camera_t::move() {
 	this->m_handle_mouse_movement();
 
@@ -80,7 +85,4 @@ void camera_t::move() {
 		eng::window.set_uniform("FAR", -10.f);
 		this->m_mouse_sensitivity = 0.2f;
 	}
-
-	eng::window.set_uniform("camera_position", this->get_position());
-	eng::window.set_uniform("camera_angle", this->get_angle());
 }

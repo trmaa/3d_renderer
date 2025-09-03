@@ -29,7 +29,6 @@ namespace eng {
 
 	private:
 		void m_load_fonts();
-		void m_add_texture(std::string name);
 		void m_load_shader();
 	public:
 		template <typename any_t>

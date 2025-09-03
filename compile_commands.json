@@ -5,12 +5,38 @@
       "-c",
       "-I./include/",
       "-o",
+      "./objects/camera.o",
+      "./src/camera.cpp"
+    ],
+    "directory": "/root/coding_adventures/3d_renderer",
+    "file": "/root/coding_adventures/3d_renderer/src/camera.cpp",
+    "output": "/root/coding_adventures/3d_renderer/objects/camera.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-I./include/",
+      "-o",
       "./objects/main.o",
       "./src/main.cpp"
     ],
-    "directory": "/root/coding_adventures/new_raytracer",
-    "file": "/root/coding_adventures/new_raytracer/src/main.cpp",
-    "output": "/root/coding_adventures/new_raytracer/objects/main.o"
+    "directory": "/root/coding_adventures/3d_renderer",
+    "file": "/root/coding_adventures/3d_renderer/src/main.cpp",
+    "output": "/root/coding_adventures/3d_renderer/objects/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-I./include/",
+      "-o",
+      "./objects/textures.o",
+      "./src/textures.cpp"
+    ],
+    "directory": "/root/coding_adventures/3d_renderer",
+    "file": "/root/coding_adventures/3d_renderer/src/textures.cpp",
+    "output": "/root/coding_adventures/3d_renderer/objects/textures.o"
   },
   {
     "arguments": [
@@ -21,9 +47,9 @@
       "./objects/eng_main.o",
       "./src/eng/main.cpp"
     ],
-    "directory": "/root/coding_adventures/new_raytracer",
-    "file": "/root/coding_adventures/new_raytracer/src/eng/main.cpp",
-    "output": "/root/coding_adventures/new_raytracer/objects/eng_main.o"
+    "directory": "/root/coding_adventures/3d_renderer",
+    "file": "/root/coding_adventures/3d_renderer/src/eng/main.cpp",
+    "output": "/root/coding_adventures/3d_renderer/objects/eng_main.o"
   },
   {
     "arguments": [
@@ -34,8 +60,8 @@
       "./objects/eng_window.o",
       "./src/eng/window.cpp"
     ],
-    "directory": "/root/coding_adventures/new_raytracer",
-    "file": "/root/coding_adventures/new_raytracer/src/eng/window.cpp",
-    "output": "/root/coding_adventures/new_raytracer/objects/eng_window.o"
+    "directory": "/root/coding_adventures/3d_renderer",
+    "file": "/root/coding_adventures/3d_renderer/src/eng/window.cpp",
+    "output": "/root/coding_adventures/3d_renderer/objects/eng_window.o"
   }
 ]
