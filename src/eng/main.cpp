@@ -4,8 +4,11 @@
 eng::window_t eng::window;
 float eng::delta_time;
 
-void eng::start_loop() {
+int main() {
 	sf::Clock clock;
+	if (eng::window.isOpen()) {
+		eng::start();
+	}
 	while (eng::window.isOpen()) {
 		sf::Event event;
 		while (eng::window.pollEvent(event)) {

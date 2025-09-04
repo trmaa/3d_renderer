@@ -10,7 +10,7 @@ namespace eng {
 	extern float delta_time;
 
 	void loop();
-	void start_loop(); 
+	void start();
 }
 
 #endif

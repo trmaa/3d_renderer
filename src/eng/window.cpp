@@ -5,6 +5,8 @@
 #include <eng/vectors.hpp>
 #include <filesystem>
 
+#include "textures.hpp"
+
 eng::window_t::window_t(): 
 	m_screen(1920, 16.f/9.f) {
 	sf::VideoMode video_mode = sf::VideoMode::getDesktopMode();
@@ -14,6 +16,7 @@ eng::window_t::window_t():
 	this->m_load_fonts();
 
 	this->m_load_shader();	
+
 }
 
 eng::screen_t::screen_t(unsigned int resolution, float aspect_ratio) {

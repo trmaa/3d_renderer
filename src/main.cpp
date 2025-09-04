@@ -12,7 +12,6 @@ void eng::loop() {
         eng::window.render();	
 }
 
-int main() {
-	eng::start_loop();
+void eng::start() {
 	g_load_textures();
 }
