@@ -28,6 +28,7 @@ struct ray_t {
     float far;
 };
 
+
 vec3 sphere_color_at(sampler2D textur, vec3 normal) {
 	float theta = acos(normal.y);
 	float phi = atan(-normal.z, normal.x);
@@ -57,55 +58,6 @@ float sphere_check_collision(ray_t ray) {
 	}
 }
 
-struct triangle_t {
-    vec3 p1;
-    vec3 p2;
-    vec3 p3;
-    vec3 color;
-    float roughness;
-};
-
-vec3 triangle_normal(triangle_t triangle, ray_t ray) {
-    float dotp = dot(cross(triangle.p2, triangle.p3), ray.direction);
-    if (dotp > 0) {
-        return cross(triangle.p3, triangle.p2);
-    }
-    return cross(triangle.p2, triangle.p3);
-}
-
-float triangle_check_collision(triangle_t triangle, ray_t ray) {
-    float denominator = dot(ray.direction, triangle_normal(triangle, ray));
-
-    if (abs(denominator) > 0) { 
-        vec3 diff = triangle.p1 - ray.origin;
-        float t = dot(diff, triangle_normal(triangle, ray)) / denominator;
-        
-        vec3 hitp = ray.direction * t + ray.origin;
-        
-        vec3 v0 = triangle.p2;
-        vec3 v1 = triangle.p3;
-        vec3 v2 = hitp - triangle.p1;
-
-        float d00 = dot(v0, v0);
-        float d01 = dot(v0, v1);
-        float d11 = dot(v1, v1);
-        float d20 = dot(v2, v0);
-        float d21 = dot(v2, v1);
-        float denom = d00 * d11 - d01 * d01;
-
-        float v = (d11 * d20 - d01 * d21) / denom;
-        float w = (d00 * d21 - d01 * d20) / denom;
-        float u = 1.0 - v - w;
-
-        bool cond = (u >= 0.0) && (v >= 0.0) && (w >= 0.0);
-        if (cond && t >= 0.0) {
-            return t;
-        }
-    }
-
-    return -1.0;
-}
-
 
 //program
 uniform vec3 camera_position;
@@ -126,24 +78,9 @@ void main() {
 
 	//start ray tracing
 
-	color = sphere_color_at(sky_texture, ray.direction);	
+		//boxel logic here
 
-	color = vec3(0, 0.2, 0.3);
-
-	triangle_t triangle;
-        triangle.p1 = vec3(0, 0, 0);
-        triangle.p2 = vec3(1, 0, 0);
-        triangle.p3 = vec3(0, 1, 0);
-        triangle.color = vec3(1, 0, 0);
-        triangle.roughness = 0.5;
-
-	float t = triangle_check_collision(triangle, ray);
-	if (t > 0) {
-                vec3 hitp = t * ray.direction + ray.origin;
-                vec3 normal = triangle_normal(triangle, ray);
-		float brightness = dot(normal, vec3(1));
-                color = triangle.color * brightness;
-        }
+	color = sphere_color_at(sky_texture, ray.direction);
 
 	//end ray tracing
 
